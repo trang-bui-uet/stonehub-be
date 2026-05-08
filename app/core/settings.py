@@ -14,7 +14,10 @@ class Settings(BaseSettings):
     gemini_api_key: str = Field(alias="GEMINI_API_KEY")
     gemini_model: str = Field(default="gemini-2.5-flash", alias="GEMINI_MODEL")
     cors_origins: List[str] = Field(default=["http://localhost:5173"], alias="CORS_ORIGINS")
-    cors_origin_regex: str = Field(default=r"https://.*\.ngrok-free\.dev", alias="CORS_ORIGIN_REGEX")
+    cors_origin_regex: str = Field(
+        default=r"https://.*\.(ngrok-free\.dev|trycloudflare\.com)",
+        alias="CORS_ORIGIN_REGEX",
+    )
 
     @field_validator("cors_origins", mode="before")
     @classmethod
